@@ -1,0 +1,107 @@
+<div class="header pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-dark d-inline-block mb-0">Title</h6>
+
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item">
+                <a href="javascript:void(0)">
+                  <i class="fas fa-book-open text-dark"> </i>
+                </a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="javascript:void(0)" class="text-dark"> Level # </a>
+              </li>
+              <li aria-current="page" class="breadcrumb-item active">
+                Question
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-lg-8 col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="mb-0">Question 1</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <p class="text-muted">
+                Solutions Grouping About This site will make an attempt to group
+                similar solutions together so that they may be voted on and
+                discussed as a group, if you have any feedback on how this
+                process can be improved, this is the place to talk about it.
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <form>
+                <div class=" form-group mb-2">
+                  <textarea
+                    class=" form-control"
+                    id="exampleFormControlTextarea3"
+                    rows="5"
+                    placeholder="your solution..."
+                  ></textarea>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-auto">
+              <button
+                class="btn btn-sm btn-primary"
+                type="button"
+              >
+                Submit
+              </button>
+            </div>
+            <div class="col-auto px-0">
+              <button
+                class="btn btn-sm btn-primary"
+                type="button"
+              >
+                Save for later
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h2>
+                Looking for help? Don't hesitate to discuss with the community.
+              </h2>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <button
+                class="btn btn-lg btn-block btn-primary"
+                type="button"
+                (click)="navigatePage('discussion')"
+              >
+                Discussion
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

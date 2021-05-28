@@ -1,0 +1,205 @@
+<div class="header pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-dark d-inline-block mb-0">Class Registration</h6>
+
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item">
+                <a href="javascript:void(0)">
+                  <i class="fas fa-graduation-cap text-dark"> </i>
+                </a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="col-lg-6 col-5 text-right">
+          <a class="btn btn-sm btn-neutral" (click)="openModal(newClass)">
+            Registration
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="h3 mb-0">List of available classes</h5>
+        </div>
+        <div class="card-body">
+          <div class="dataTables_wrapper py-1">
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <div class="dataTables_length" id="datatable_length">
+                  <label>
+                    Show
+                    <select
+                      name="datatable_length"
+                      aria-controls="datatable"
+                      class="form-control form-control-sm"
+                      (change)="entriesChange($event)"
+                    >
+                      <option value="10" [selected]="entries == 10">5</option>
+                      <option value="25" [selected]="entries == 25">10</option>
+                      <option value="50" [selected]="entries == 50">15</option>
+                      <option value="-1" [selected]="entries == -1">20</option>
+                    </select>
+                    entries
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <div id="datatable_filter" class="dataTables_filter">
+                  <label>
+                    <input
+                      type="search"
+                      class="form-control form-control-sm"
+                      placeholder="Search records"
+                      aria-controls="datatable"
+                      (keyup)="filterTable($event)"
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <ngx-datatable
+              class="bootstrap selection-cell"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [rowHeight]="'auto'"
+              [limit]="entries != -1 ? entries : undefined"
+              [rows]="temp"
+              (activate)="onActivate($event)"
+            >
+              <ngx-datatable-column name="Name">
+                <ng-template ngx-datatable-header-template>
+                  <span>Class Name</span>
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Start">
+                <ng-template ngx-datatable-header-template>
+                  <span>Date</span>
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Office">
+                <ng-template ngx-datatable-header-template>
+                  <span>Location</span>
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column>
+                <ng-template ngx-datatable-header-template>
+                  <span>info</span>
+                </ng-template>
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <a
+                    class="btn btn-sm btn-info"
+                    (click)="openModal(newClass)"
+                  >
+                    <i class="fas fa-info text-white"></i>
+                  </a>
+                  <a class="btn btn-sm btn-success" (click)="confirm()">
+                    <i class="fas fa-check text-white"></i>
+                  </a>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #newClass>
+  <div class="modal-header bg-default">
+    <h6 class="modal-title text-white my-auto" id="modal-title-default">
+      Class Registration
+    </h6>
+
+    <button
+      aria-label="Close"
+      class="close"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      <span aria-hidden="true" class="text-white my-auto"> × </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="registerForm">
+      <div class="form-group">
+        <label class="form-control-label">Class Name</label>
+        <input
+          class="form-control"
+          placeholder="Enter class name"
+          formControlName="name"
+          type="text"
+        />
+      </div>
+      <div class=" form-group">
+        <label
+          class=" form-control-label"
+          for="exampleFormControlTextarea1"
+        >
+          Basic textarea
+        </label>
+
+        <textarea
+          class=" form-control"
+          id="exampleFormControlTextarea3"
+          rows="3"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="example-datetime-local-input">
+          Datetime
+        </label>
+        <input
+          class="form-control"
+          id="example-datetime-local-input"
+          type="datetime-local"
+          value="2018-11-23T10:30:00"
+        />
+      </div>
+      <div class="form-group">
+        <label class="form-control-label">Location</label>
+        <input
+          class="form-control"
+          placeholder="Kuala Lumpur"
+          type="text"
+        />
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button
+      class="btn btn-success"
+      type="button"
+      (click)="confirm()"
+      [disabled]="!registerForm.valid"
+    >
+      Register
+    </button>
+
+    <button
+      class="btn btn-outline-danger ml-auto"
+      data-dismiss="modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>
